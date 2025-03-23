@@ -25,11 +25,13 @@ const Navbar = () => {
   const navItems = [
     { name: "Guide", href: "/guide" },
     { name: "Properties", href: "/properties" },
+    { name: "Contact", href: "/contact" },
     { name: "Property Request", href: "/propertyrequest" },
   ];
   const mobileNavItems = [
     { name: "Guide", href: "/guide" },
     { name: "Properties", href: "/properties" },
+    { name: "Contact", href: "/contact" },
     { name: "Property Request", href: "/propertyrequest" },
     { name: "Login", href: "/auth" },
   ];
