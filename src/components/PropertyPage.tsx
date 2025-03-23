@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from "next/navigation";
 import {
   LayoutGrid,
   List,
   Search,
   SlidersHorizontal,
-  X
+  X,
+  Loader2
 } from 'lucide-react';
 
 import {
@@ -34,7 +34,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PropertyCard } from './PropertCard'; // We'll create this next
-import axios from 'axios';
 
 interface Property {
   id: string;
@@ -64,7 +63,18 @@ interface Filters {
   location: string;
 }
 
-const PropertyListingPage = () => {
+// Loading component for Suspense fallback
+const PropertyListingLoader = () => (
+  <div className="min-h-screen flex justify-center items-center">
+    <div className="flex flex-col items-center gap-4">
+      <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+      <p className="text-gray-600">Loading properties...</p>
+    </div>
+  </div>
+);
+
+// Main content component separated to use hooks safely
+const PropertyListingContent = () => {
   const searchParams = useSearchParams();
   const [layout, setLayout] = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage] = useState(1);
@@ -94,7 +104,6 @@ const PropertyListingPage = () => {
   const currentProperties = filteredProperties && filteredProperties.slice(startIndex, endIndex);
 
   const applyFilters = () => {
-
     let results = [...properties];
 
     if (filters.search) {
@@ -170,13 +179,9 @@ const PropertyListingPage = () => {
     fetchProperties();
   }, [searchParams]);
 
-
   useEffect(() => {
     applyFilters();
   }, [filters]);
-
-  console.log("Filtered", filteredProperties)
-  console.log("Properties", properties)
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -289,44 +294,62 @@ const PropertyListingPage = () => {
           ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
           : 'grid-cols-1'
           }`}>
-          {currentProperties.map((property) => (
-            <PropertyCard
-              key={property.id}
-              property={property}
-              layout={layout}
-            />
-          ))}
-          {loading && <p> Loading </p>}
+          {loading ? (
+            Array(6).fill(0).map((_, index) => (
+              <div key={index} className="bg-gray-100 rounded-lg h-64 animate-pulse"></div>
+            ))
+          ) : (
+            currentProperties.map((property) => (
+              <PropertyCard
+                key={property.id}
+                property={property}
+                layout={layout}
+              />
+            ))
+          )}
+          {loading && !currentProperties.length && <p className="col-span-full text-center">Loading properties...</p>}
+          {!loading && !currentProperties.length && <p className="col-span-full text-center">No properties found matching your criteria.</p>}
         </div>
 
         {/* Pagination */}
-        <div className="mt-8 flex justify-center gap-2">
-          <Button
-            variant="outline"
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(prev => prev - 1)}
-          >
-            Previous
-          </Button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        {!loading && filteredProperties.length > 0 && (
+          <div className="mt-8 flex justify-center gap-2">
             <Button
-              key={page}
-              variant={currentPage === page ? 'default' : 'outline'}
-              onClick={() => setCurrentPage(page)}
+              variant="outline"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(prev => prev - 1)}
             >
-              {page}
+              Previous
             </Button>
-          ))}
-          <Button
-            variant="outline"
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(prev => prev + 1)}
-          >
-            Next
-          </Button>
-        </div>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <Button
+                key={page}
+                variant={currentPage === page ? 'default' : 'outline'}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </Button>
+            ))}
+            <Button
+              variant="outline"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(prev => prev + 1)}
+            >
+              Next
+            </Button>
+          </div>
+        )}
       </div>
     </div>
+  );
+};
+
+// Main component with Suspense boundary
+const PropertyListingPage = () => {
+  return (
+    <Suspense fallback={<PropertyListingLoader />}>
+      <PropertyListingContent />
+    </Suspense>
   );
 };
 

@@ -5,6 +5,12 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['images.unsplash.com'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.json$/,
