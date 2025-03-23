@@ -90,14 +90,14 @@ const Hero = () => {
                     <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-teal-400 bg-clip-text text-transparent animate-fade-in">
                         Explore Properties that Suits
                     </h1>
-                    <h2 className="text-xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent mb-4 animate-fade-in">Your Lifestyle in <span
+                    <h2 className="text-xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent mb-2 animate-fade-in">Your Lifestyle in <span
                         className={`text-blue-500 transition-opacity duration-500 ${fadeIn ? "opacity-100" : "opacity-0"
                             }`}
                     >
                         {locations[currentLocationIndex]}
                     </span>
                     </h2>
-                    <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
+                    <p className="text-md md:text-lg text-gray-200 max-w-2xl mx-auto">
                         Find homes, lands, exhibition centers, shortlets, and more in prime locations across Nigeria. Your perfect property is just a click away.
                     </p>
                 </div>

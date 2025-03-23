@@ -181,7 +181,6 @@ const FinestProperties = () => {
     const fetchProperties = async () => {
       const properties = await axios.get('/api/properties');
       try {
-        console.log(properties.data)
         setProperties(properties.data);
         
       } catch (error) {

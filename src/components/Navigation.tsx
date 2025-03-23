@@ -27,6 +27,12 @@ const Navbar = () => {
     { name: "Properties", href: "/properties" },
     { name: "Property Request", href: "/propertyrequest" },
   ];
+  const mobileNavItems = [
+    { name: "Guide", href: "/guide" },
+    { name: "Properties", href: "/properties" },
+    { name: "Property Request", href: "/propertyrequest" },
+    { name: "Login", href: "/auth" },
+  ];
 
   return (
     <nav
@@ -97,9 +103,9 @@ const Navbar = () => {
           } overflow-hidden`}
         >
           <div className={`pt-2 pb-3 space-y-1 ${
-            isScrolled ? "bg-white" : "bg-black bg-opacity-50"
+            isScrolled ? "bg-white" : "bg-black bg-opacity-90"
           }`}>
-            {navItems.map((item) => (
+            {mobileNavItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -114,7 +120,9 @@ const Navbar = () => {
               >
                 {item.name}
               </Link>
+              
             ))}
+
           </div>
         </div>
       </div>
