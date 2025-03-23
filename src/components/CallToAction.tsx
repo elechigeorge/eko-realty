@@ -19,7 +19,7 @@ const CallToAction = () => {
         {/* Buttons */}
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
           <a
-            href="/listings"
+            href="/properties"
             className="bg-white text-blue-600 font-medium py-3 px-8 rounded-lg shadow-lg hover:bg-blue-50 transition-all duration-300"
           >
             Explore Listings
