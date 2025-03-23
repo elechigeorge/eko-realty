@@ -77,7 +77,7 @@ const Hero = () => {
             <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
-                    backgroundImage: "url('/home.jpeg')",
+                    backgroundImage: "url('/lagoss.jpg')",
                 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50" />
@@ -88,7 +88,7 @@ const Hero = () => {
                 {/* Hero Text */}
                 <div className="text-center mb-8">
                     <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-teal-400 bg-clip-text text-transparent animate-fade-in">
-                        Explore Properties that Suits
+                        Find Properties that Suits
                     </h1>
                     <h2 className="text-xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent mb-2 animate-fade-in">Your Lifestyle in <span
                         className={`text-blue-500 transition-opacity duration-500 ${fadeIn ? "opacity-100" : "opacity-0"
