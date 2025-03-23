@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  email      String     @unique
+  password   String
+  role       Role       @default(USER) // Enum for roles: ADMIN, AGENT, AGENCY, USER
+  profile    Profile? // Optional profile details
+  properties Property[] // Relation to the properties listed by this user
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Property {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  title              String // Property title
+  slug               String     @unique
+  purpose            String // Purpose of the property (e.g., sell, rent)
+  state              String // State where the property is located
+  locality           String // Locality/area of the property
+  address            String // Full address
+  propertyType       String // Type of property (e.g., Residential, Commercial)
+  subType            String? // Sub-type (e.g., Duplex, Flat, Office Space)
+  pictures           String[] // Array of picture URLs
+  videoLink          String? // Video link for the property
+  description        String // Description of the property
+  price              String // Price of the property
+  discountedPrice    String?
+  denomination       String // Currency for the price (e.g., NGN, USD)
+  acceptInstallment  Boolean // Whether installment payment is accepted
+  initialDeposit     String? // Initial deposit for installment payment
+  monthlyInstallment String? // Monthly installment amount
+  duration           String? // Duration of the installment plan in months
+  priceAppend        String? // Price suffix (e.g., /month, /year, /sqm, /day)
+  bedroom            String? // Number of bedrooms
+  bathroom           String? // Number of bathrooms
+  toilet             String? // Number of toilets
+  areaSize           String // Size of the property (e.g., in square meters or feet)
+  features           String[] // Array of features (e.g., "Serviced", "Newly Built", "Furnished")
+  amenities          String[] // Array of selected amenities (e.g., "Pool", "Gym", "Parking")
+  logs               Json? // Miscellaneous entry logs
+  listedBy           User     @relation(fields: [userId], references: [id]) // Relationship to the user who listed the property
+  userId             String   @db.ObjectId // Foreign key linking to the User model
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  views              Int?
+  status             String?
+  active             Boolean?
+  activeMessage      String?
+}
+
+enum Role {
+  ADMIN
+  AGENT
+  AGENCY
+  USER
+}
+
+model Profile {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String   @unique @db.ObjectId // Reference to User model
+
+  firstName           String
+  lastName            String
+  email               String   @unique
+  phone               String   @unique
+
+  avatar              String?  // Store the image URL
+  bio                 String?
+  address             String?
+  company             String?
+  position            String?
+
+  userType            String   @default("user") // Possible values: "user", "admin", etc.
+  referralSource      String?
+  platformPurpose     String?
+  investmentRange     String?
+  propertyPreferences String? // JSON-style array in MongoDB
+  locationPreferences String? // JSON-style array in MongoDB
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  user                User     @relation(fields: [userId], references: [id])
+}
+

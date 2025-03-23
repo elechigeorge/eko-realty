@@ -1,0 +1,66 @@
+{
+    "propertyType": [
+        {
+            "propertyType": "House",
+            "subType": [
+                "Block of Flats",
+                "Detached Bungalow",
+                "Detached Duplex",
+                "Massionette",
+                "Semi-Detached Bungalow",
+                "Semi-Detached Duplex",
+                "Terrace Bungalow",
+                "Terrace Duplex"
+            ]
+        },
+        {
+            "propertyType": "Land",
+            "subType": [
+                "Commercial Land",
+                "Industrial Land",
+                "Joint-Venture Land",
+                "Mixed - Used Land",
+                "Residential Land",
+                "Serviced Residential Land"
+            ]
+        },
+        {
+            "propertyType": "Flat / Apartment",
+            "subType": [
+                "Boys Quaters",
+                "Mini Flats",
+                "Penthouse",
+                "Self Contain",
+                "Shared Apartment",
+                "Studio Apartment"
+            ]
+        },
+        {
+            "propertyType": "Commercial Property",
+            "subType": [
+                "Church",
+                "Events Centre",
+                "Factory",
+                "Filling Station",
+                "Hotel/Guest House",
+                "Office Space",
+                "School",
+                "Shop",
+                "Shop in Mall",
+                "Show Room",
+                "Tank Farm",
+                "Warehouse"
+            ]
+        },
+        {
+            "propertyType": "Co-Working Space",
+            "subType": [
+                "Conference Room",
+                "Desk",
+                "Meeting Room",
+                "Private Office",
+                "Workstation"
+            ]
+        }
+    ]
+}

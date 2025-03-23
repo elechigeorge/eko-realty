@@ -1,0 +1,130 @@
+.page.sidebar-7-page {
+  background: #1c1b23;
+}
+
+.page.sidebar-7-page button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.sidebar-7 {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 56px;
+  background: #5331ff;
+  backdrop-filter: blur(10px);
+  transition: width 0.45s ease;
+}
+
+.sidebar-7.open {
+  width: 190px;
+}
+
+.sidebar-7 .inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 190px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-7 header {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 16px;
+  color: #f9f9f9;
+}
+
+.sidebar-7 header .icon {
+  margin-right: 12px;
+}
+
+.sidebar-7 header span {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.sidebar-7.open header span {
+  opacity: 1;
+}
+
+.sidebar-7 nav {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 8px;
+  flex: 1;
+}
+
+.sidebar-7 nav .sidebar-7-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  width: 100%;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #f9f9f9;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  text-transform: capitalize;
+  transition: background 0.25s ease;
+}
+
+.sidebar-7 nav .sidebar-7-button:hover {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.sidebar-7 nav .sidebar-7-button p {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.sidebar-7.open nav .sidebar-7-button p {
+  opacity: 1;
+}
+
+.sidebar-7:not(.open) nav .sidebar-7-button:hover p {
+  opacity: 1;
+  visibility: visible;
+  background: #2e2a47;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  translate: 12px 0;
+}
+
+.sidebar-7-burger {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  color: #f9f9f9;
+  background: #5331ff;
+  transition: background 0.25s ease;
+}
+
+.sidebar-7-burger:hover {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+@media (max-width: 400px) {
+  .sidebar-7 {
+      translate: -100% 0;
+  }
+
+  .sidebar-7.open {
+      translate: 0;
+  }
+}
