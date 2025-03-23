@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Mail, Lock, HouseIcon, House, TowerControl, Home } from "lucide-react";
 import { setCookie } from 'cookies-next';
+import Link from "next/link";
 
 
 export default function LoginPage() {
@@ -46,10 +47,10 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex items-center justify-center space-x-2">
+        <Link href={`/`} className="flex items-center justify-center space-x-2">
           <Home className="h-12 w-12 text-blue-600" />
           <span className="text-3xl font-bold text-gray-900">Eko Realty</span>
-        </div>
+        </Link>
         <h2 className="mt-6 text-center text-xl font-extrabold text-gray-900">
           Sign in to your account
         </h2>
