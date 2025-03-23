@@ -61,7 +61,7 @@ const Header = () => {
         <button className="lg:hidden p-2 mr-4 text-gray-700 hover:bg-gray-100 rounded-full transition-colors">
           <FontAwesomeIcon icon={faBars} className="w-5 h-5" />
         </button>
-        <div className="my-2">
+        <div className="my-2 hidden md:block">
           <h2 className="text-2xl font-bold bg-gradient-to-b from-blue-100 to-blue-500 bg-clip-text text-transparent">
             Eko Realty
           </h2>
@@ -105,13 +105,13 @@ const Header = () => {
                 Create New
               </Link>
               
-              <Link
+              {/* <Link
                 href="/dashboard/subscription"
                 className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
               >
                 <FontAwesomeIcon icon={faCreditCard} className="w-4 h-4 mr-2" />
                 Subscription
-              </Link>
+              </Link> */}
               
               <button
                 onClick={handleLogout}
